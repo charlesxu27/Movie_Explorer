@@ -6,14 +6,19 @@ let searchTerm = ""
 
 // Create DOM references
 
+titleElement = document.querySelector("h1")
 contentTitleElement = document.querySelector("#content-title")
 movieGridElement = document.querySelector("#movies-grid")
 submitButtonElement = document.querySelector("#submit-button")
+closeSearchButtonElement = document.querySelector("#close-search-btn")
 searchInputElement = document.querySelector("#search-input")
 seeMoreButtonElement = document.querySelector("#load-more-movies-btn")
+movieCardElements = document.querySelectorAll(".movie-card img")
 
 // Create event listeners
+
 submitButtonElement.addEventListener("click", (event) => {
+    event.preventDefault()
     contentTitleElement.classList.add("hidden")  // clear header on new search query
     movieGridElement.innerHTML = ``  // clear existing results on new search query
     page = 1
@@ -29,10 +34,22 @@ searchInputElement.addEventListener("keydown", (event) => {
     }
 })
 
+closeSearchButtonElement.addEventListener("click", (event) => {
+    event.preventDefault()
+    searchInputElement.value = ""
+    contentTitleElement.classList.remove("hidden")
+    page = 1
+    loadMainPage(event, page)
+})
+
 seeMoreButtonElement.addEventListener("click", (event) => {
     page += 1
     console.log("*** calling handleSearchSubmit for Page: " + page)
     handleSearchSubmit(event, page)
+})
+
+movieCardElements.addEventListener("click", (event) => {
+    console.log("Img was clicked")
 })
 
 // Main functions
@@ -76,6 +93,15 @@ function displayMovies(data) {
 async function handleSearchSubmit(event, page) {
     console.log("*** Calling handleSearchSubmit ***")
     searchTerm = searchInputElement.value
+
+    if (searchTerm === "") {
+        alert("Please search for a movie.")
+        loadMainPage(1)
+        seeMoreButtonElement.classList.remove("hidden")  // reveal seeMoreButton after results load
+        contentTitleElement.classList.remove("hidden")
+        return;
+    }
+
     const data = await getMovies(event, searchTerm, page)
     seeMoreButtonElement.classList.remove("hidden")  // reveal seeMoreButton after results load
     
@@ -98,7 +124,8 @@ function ratingToStars(rating) {
 
 async function loadMainPage(event, page) {
     console.log("*** Calling loadMainPage ***")
-    url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`
+    movieGridElement.innerHTML = ``
+    url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=${page}`
     response = await fetch(url)
     data = await response.json()
     displayMovies(data)
@@ -107,5 +134,6 @@ async function loadMainPage(event, page) {
 
 
 window.onload = function() {
+    searchInputElement.value = ""
     loadMainPage(1)
 }

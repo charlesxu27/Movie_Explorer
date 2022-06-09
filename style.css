@@ -18,6 +18,10 @@ body {
     align-items: center;
 }
 
+button, h1, form, input, #movie-grid {
+    transition: 2s ease-in;
+}
+
 #content {
     display: flex;
     flex-direction: column;
@@ -119,12 +123,12 @@ html {
     color: white;
     padding: 10px;
     background-color: black;
-    transition: transform .25s ease;
+    transition: transform .75s;
     /* https://w3bits.com/css-image-hover-zoom/ */
 }
 
 .movie-card:hover {
-    transform: scale(1.2);
+    transform: scale(1.3);
 }
 
 .movie-poster {
