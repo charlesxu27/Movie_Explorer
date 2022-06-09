@@ -8,8 +8,9 @@ body {
     display: flex;
     flex-direction: column;
     background-color: black;
-    color:aliceblue;
+    color:#E50914;
     font-family: sans-serif;
+    align-items: center;
 }
 
 footer {
@@ -39,13 +40,15 @@ footer {
 }
 
 #form-div button {
-    background-color: aliceblue;
+    background-color: slategrey;
+    color: white;
     border: none;
     font-size: 26px;
 }
 
 #form-div button:hover {
-    background-color: gold;
+    background-color: #E50914;
+    color: black;
     border: none;
     font-size: 26px;
 }
@@ -62,3 +65,9 @@ footer {
     margin-top: 2px;
     font-family: sans-serif;
 }
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
