@@ -1,1 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+#attribution-div {
+    display: flex;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color:aliceblue;
+    font-family: sans-serif;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-weight: lighter;
+    height: 5vh;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-top: .5%;
+    padding-bottom: .5%;
+}
+
+
+#form-div {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#form-div img {
+    width: 8vw;
+    height: auto;
+    padding-top: 2px;
+}
+
+#form-div button {
+    background-color: aliceblue;
+    border: none;
+    font-size: 26px;
+}
+
+#form-div button:hover {
+    background-color: gold;
+    border: none;
+    font-size: 26px;
+}
+
+#form-div input {
+    font-size: 26px;
+}
+
+#form-div span {
+    font-size: 12px;
+    color: gainsboro;
+    padding: 2px;
+    padding-right: 5px;
+    margin-top: 2px;
+    font-family: sans-serif;
+}
