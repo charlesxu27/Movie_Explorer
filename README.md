@@ -6,7 +6,7 @@ Submitted by: **Charles Xu**
 
 Estimated time spent: **16** hours spent in total
 
-Deployed Application (optional): [Flixster Deployed Site](https://charlesxu27.github.io/Movie_Explorer/)
+Deployed Application: [Movie Explorer Deployed Site](https://charlesxu27.github.io/Movie_Explorer/)
 
 ### Application Features
 
@@ -42,7 +42,7 @@ Deployed Application (optional): [Flixster Deployed Site](https://charlesxu27.gi
 
 ### Walkthrough Video
 
-<img src="https://imgur.com/a/yw0bKQA" width="600" height="auto">
+`<img src="https://imgur.com/a/yw0bKQA" width="600" height="auto">`
 
 ### Reflection
 
