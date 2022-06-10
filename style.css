@@ -120,9 +120,10 @@ html {
     flex-direction: column;
     font-size: 16px;
     color: white;
-    padding: 10px;
+    margin: 10px;
     background-color: black;
     transition: transform .75s;
+    border-radius: 10px;
     /* https://w3bits.com/css-image-hover-zoom/ */
 }
 
@@ -143,8 +144,6 @@ html {
 .movie-title, .movie-votes {
     font-size: 16px;
     color: gainsboro;
-    padding: 2px;
-    padding-right: 5px;
     margin-top: 2px;
     font-family: sans-serif;
     font-weight: bold;
@@ -166,20 +165,45 @@ nav {
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(4px);
     z-index: 1;
+    display: none;
 }
 
 .pop-up .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
-    background: white;
-    width: 50%;
-    height: 75%;
+    transform:translate(-50%, -50%) scale(0);
+    background: black;
+    width: 60%;
+    height: 80%;
     z-index: 2;
     text-align: center;
     padding: 20px;
     box-sizing: border-box; /* keeps box within parent box */
+    border-radius: 10px;
+}
+
+.pop-up img {
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+    box-sizing: border-box;
+}
+
+.pop-up iframe {
+    height: 500px;
+    width: 100%;
+}
+
+.pop-up p {
+    text-align: left;
+    font-weight: lighter;
+    text-align: center;
+    font-size: 16px;
 }
 
 .pop-up #close-pop-up-btn {
@@ -188,9 +212,23 @@ nav {
     right: 20px;
     width: 20px;
     height: 20px;
-    background-color: darkorange;
+    background-color: #E50914;
+    color: black;
     font-weight: 900;
+    text-align: center;
+    border-radius: 50%;
 }
+
+.pop-up.active .overlay {
+    display: block;
+}
+
+.pop-up.active .content {
+    transition: all 800ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
 
 
 
