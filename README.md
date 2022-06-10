@@ -6,7 +6,7 @@ Submitted by: **Charles Xu**
 
 Estimated time spent: **16** hours spent in total
 
-Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
+Deployed Application (optional): [Flixster Deployed Site](https://charlesxu27.github.io/Movie_Explorer/)
 
 ### Application Features
 
@@ -34,7 +34,7 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
 #### STRETCH FEATURES
 
-- [ ] Deploy website using GitHub Pages. 
+- [x] Deploy website using GitHub Pages. 
 - [x] Allow user to view more details about a movie within a popup.
 - [x] Improve the user experience through CSS & animation.
 - [x] Allow movie video trailers to be played using [embedded YouTube](https://support.google.com/youtube/answer/171780?hl=en)
@@ -42,28 +42,27 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+<img src="https://imgur.com/a/yw0bKQA" width=600px height=auto>
 
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, the labs were very helpful in giving me an idea of how to start building this site. For instance, knowing how to use async await functions to fetch data via an API call was immensely helpful. I was able to repeat these patterns to extend features on the movie site, like displaying trailers and movie details. I found the pop-up feature to be hard because I needed to have a good understanding of the DOM and how to inject html elements into the right places.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+If I had more time, I would add a header at the top of the home page so users can browse more movie categories. I would also want to add animations to the website to make the website browsing experience smoother. Finally, I would clean up the javascript functions, so the fetch functions can be reused more often.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I thought I did a good job debugging when things went wrong. Console.log become my favorite tool because I was able to see when functions were called and what the DOM looked like at various points of time. I ran into a lot of trouble with my injected HTML code because the code was added at the bottom of the body tag, after the script tag which led to unecessary refreshes of the page.
+
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
+- I referred to MDN for many javascript functions and css attributes.
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Shoutout to Snigdha for helping me figure out that the placement of my script tag led to some hidden refreshing errors!

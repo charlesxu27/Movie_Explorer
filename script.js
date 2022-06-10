@@ -173,7 +173,7 @@ async function displayMovieDetails(data, key) {
                 <img src="https://image.tmdb.org/t/p/w500${data.backdrop_path}">
                 <div id="details">
                     <b>Rating: ${data.vote_average}</b><br>
-                    <b>Release Date: ${data.release_date.slice(4)}</b><br>
+                    <b>Release Date: ${data.release_date.slice(0,4)}</b><br>
                     <b>Genre: ${data.genres[0].name}</b><br>
                     <b>Runtime: ${data.runtime} minutes</b><br>
                     <b>Overview:</b>
