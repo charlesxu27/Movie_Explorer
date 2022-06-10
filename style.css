@@ -19,7 +19,8 @@ body {
 }
 
 button, h1, form, input, #movie-grid {
-    transition: 2s ease-in;
+    transition: .5s ease-in;
+    border-radius: 5px;
 }
 
 #content {
@@ -123,6 +124,10 @@ html {
     background-color: black;
     transition: transform .75s;
     /* https://w3bits.com/css-image-hover-zoom/ */
+}
+
+.movie-card img {
+    border-radius: 4%;;
 }
 
 .movie-card:hover {

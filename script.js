@@ -16,6 +16,47 @@ const seeMoreButtonElement = document.querySelector("#load-more-movies-btn")
 const movieCardElements = document.querySelectorAll("movie-card")
 
 
+// Create event listeners
+
+submitButtonElement.addEventListener("click", (event) => {
+    event.preventDefault()
+    contentTitleElement.classList.add("hidden")  // clear header on new search query
+    movieGridElement.innerHTML = ``  // clear existing results on new search query
+    page = 1
+    handleSearchSubmit(event, page)
+})
+
+searchInputElement.addEventListener("keydown", (event) => {
+    contentTitleElement.classList.add("hidden")
+    movieGridElement.innerHTML = ``  // clear existing results on new search query
+    page = 1
+    if (event.key === "Enter") {
+        submitButtonElement.click() // trigger button click
+    }
+})
+
+closeSearchButtonElement.addEventListener("click", (event) => {
+    event.preventDefault()
+    searchInputElement.value = ""
+    contentTitleElement.classList.remove("hidden")
+    page = 1
+    loadMainPage(event, page)
+})
+
+seeMoreButtonElement.addEventListener("click", (event) => {
+    page += 1
+    console.log("*** calling handleSearchSubmit for Page: " + page)
+    handleSearchSubmit(event, page)
+})
+
+// why doesn't this work
+// movieCardElements.forEach(card => {
+//     card.addEventListener("click", () => {
+//         console.log("Clicking movie card")
+//     })
+// })
+
+
 // Main functions
 async function getMovies(event, searchTerm, page) {
     console.log("*** Calling getMovies***")
@@ -96,49 +137,12 @@ async function loadMainPage(event, page) {
     seeMoreButtonElement.classList.add("hidden")  // hide seeMoreButton on main page
 }
 
+async function showPopUp(movie) {
+    pass
+}
+
 
 window.onload = function() {
     page = 1
     loadMainPage(page);
 }
-
-// Create event listeners
-
-submitButtonElement.addEventListener("click", (event) => {
-    event.preventDefault()
-    contentTitleElement.classList.add("hidden")  // clear header on new search query
-    movieGridElement.innerHTML = ``  // clear existing results on new search query
-    page = 1
-    handleSearchSubmit(event, page)
-})
-
-searchInputElement.addEventListener("keydown", (event) => {
-    contentTitleElement.classList.add("hidden")
-    movieGridElement.innerHTML = ``  // clear existing results on new search query
-    page = 1
-    if (event.key === "Enter") {
-        submitButtonElement.click() // trigger button click
-    }
-})
-
-closeSearchButtonElement.addEventListener("click", (event) => {
-    event.preventDefault()
-    searchInputElement.value = ""
-    contentTitleElement.classList.remove("hidden")
-    page = 1
-    loadMainPage(event, page)
-})
-
-seeMoreButtonElement.addEventListener("click", (event) => {
-    page += 1
-    console.log("*** calling handleSearchSubmit for Page: " + page)
-    handleSearchSubmit(event, page)
-})
-
-movieCardElements.forEach(card => {
-    card.addEventListener("click", () => {
-        console.log("Clicking movie card")
-    })
-})
-
-
