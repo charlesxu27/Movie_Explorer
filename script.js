@@ -1,11 +1,11 @@
-// Instantiate constants and global variables
-const API_KEY = "2bc0bfedf2889bc7dfd1db360b7b6f27"
+// --- Instantiate constants and global variables ---
 
-let page = 1
+const API_KEY = "2bc0bfedf2889bc7dfd1db360b7b6f27"
 // TODO: two variables for pages (one for home and one for search)
+let page = 1
 let searchTerm = ""
 
-// Create DOM references
+// --- Create DOM references ---
 
 const bodyElement = document.body
 const titleElement = document.querySelector("h1")
@@ -18,9 +18,7 @@ const seeMoreButtonElement = document.querySelector("#load-more-movies-btn")
 const movieCardElements = document.querySelectorAll("movie-card")
 const searchFormElement = document.querySelector("#search-form")
 
-
-// Create event listeners
-
+// --- Create event listeners ---
 
 searchFormElement.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -30,16 +28,6 @@ searchFormElement.addEventListener("submit", (event) => {
     page = 1
     handleSearchSubmit(event, page)
 })
-
-// searchInputElement.addEventListener("keydown", (event) => {
-//     if (event.key === "Enter") {
-//         console.log("Enter Key Registered")
-//         contentTitleElement.classList.add("hidden")
-//         movieGridElement.innerHTML = ``  // clear existing results on new search query
-//         page = 1
-//         handleSearchSubmit(event, page)
-//     }
-// })
 
 closeSearchButtonElement.addEventListener("click", (event) => {
     console.log("Close Search Registered")
@@ -64,8 +52,9 @@ seeMoreButtonElement.addEventListener("click", (event) => {
 //     })
 // })
 
+// --- Main functions ---
 
-// Main functions
+
 async function getMovies(event, searchTerm, page) {
     console.log("*** Calling getMovies***")
     event.preventDefault() // override submit button behavior (refresh page)
@@ -77,6 +66,7 @@ async function getMovies(event, searchTerm, page) {
     console.log(data)
     return data
 }
+
 
 function displayMovies(data) {
     console.log("*** Calling displayMovies ***")
@@ -124,14 +114,14 @@ async function handleSearchSubmit(event, page) {
 
 function ratingToStars(rating) {
     if (rating === null || rating == 0) {
-        return "N/A"
+        return "&#10068;"
     }
     let result = ""
-    rating = Math.ceil(rating / 2)
-    for (let i = 0; i < rating; i++) {
+    let stars = Math.ceil(rating / 2)
+    for (let i = 0; i < stars; i++) {
         result += "&#11088; "
     }
-    return result
+    return result + ` (${rating}/10)`
 }
 
 
@@ -155,6 +145,7 @@ async function fetchMovieDetails(movie_id) {
     return data
 }
 
+
 async function fetchMovieTrailer(movie_id) {
     console.log(`*** Calling fetchMovieTrailer for: ${movie_id} ***`)
     const url = `https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${API_KEY}&language=en-US`
@@ -163,6 +154,7 @@ async function fetchMovieTrailer(movie_id) {
     console.log(data.results[0].key)
     return data.results[0].key
 }
+
 
 async function displayMovieDetails(data, key) {
     console.log(`*** Calling displayMovieDetails`)
@@ -175,10 +167,19 @@ async function displayMovieDetails(data, key) {
         <div class="content">
             <div id="close-pop-up-btn" onclick="closePopUp()">&times;</div>
             <h3>${data.original_title}</h3>
-            <img src="https://image.tmdb.org/t/p/w500${data.backdrop_path}">
-            <p>${data.overview}</p>
-            <iframe src="https://www.youtube.com/embed/${key}">
+            <iframe src="https://www.youtube.com/embed/${key}?autoplay=1&mute=1">
             </iframe>
+            <div id="info-box">
+                <img src="https://image.tmdb.org/t/p/w500${data.backdrop_path}">
+                <div id="details">
+                    <b>Rating: ${data.vote_average}</b><br>
+                    <b>Release Date: ${data.release_date.slice(4)}</b><br>
+                    <b>Genre: ${data.genres[0].name}</b><br>
+                    <b>Runtime: ${data.runtime} minutes</b><br>
+                    <b>Overview:</b>
+                    <p>${data.overview}</p>
+                </div>
+            </div>
         </div>
     </div>
     `
@@ -206,9 +207,7 @@ async function showPopUp(movie_id) {
 function closePopUp() {
     console.log("*** Calling closePopUp ***")
     const popUp = document.getElementById("pop-up-div")
-    // popUp.style.display = 'none'
     popUp.parentElement.removeChild(popUp)  // remove entire div
-    // .classList.remove("active")
 }
 
 window.onload = function () {
