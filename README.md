@@ -42,7 +42,7 @@ Deployed Application (optional): [Flixster Deployed Site](https://charlesxu27.gi
 
 ### Walkthrough Video
 
-<img src="https://imgur.com/a/yw0bKQA" width=600px height=auto>
+<img src="https://imgur.com/a/yw0bKQA" width="600" height="auto">
 
 ### Reflection
 
