@@ -41,7 +41,7 @@ Deployed Application: [Movie Explorer Deployed Site](https://charlesxu27.github.
 
 ### Walkthrough Video
 
-<img src="https://imgur.com/a/yw0bKQA" width="600">
+<img src="https://i.imgur.com/tPBw64r.mp4" width="600">
 
 ### Reflection
 
