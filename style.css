@@ -157,4 +157,40 @@ nav {
     justify-content: space-evenly;
 }
 
+.pop-up .overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+.pop-up .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    background: white;
+    width: 50%;
+    height: 75%;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box; /* keeps box within parent box */
+}
+
+.pop-up #close-pop-up-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: darkorange;
+    font-weight: 900;
+}
+
+
 

@@ -6,6 +6,7 @@ let searchTerm = ""
 
 // Create DOM references
 
+const bodyElement = document.body
 const titleElement = document.querySelector("h1")
 const contentTitleElement = document.querySelector("#content-title")
 const movieGridElement = document.querySelector("#movies-grid")
@@ -20,6 +21,7 @@ const movieCardElements = document.querySelectorAll("movie-card")
 
 submitButtonElement.addEventListener("click", (event) => {
     event.preventDefault()
+    console.log("Submit Button Registered")
     contentTitleElement.classList.add("hidden")  // clear header on new search query
     movieGridElement.innerHTML = ``  // clear existing results on new search query
     page = 1
@@ -27,15 +29,18 @@ submitButtonElement.addEventListener("click", (event) => {
 })
 
 searchInputElement.addEventListener("keydown", (event) => {
-    contentTitleElement.classList.add("hidden")
-    movieGridElement.innerHTML = ``  // clear existing results on new search query
-    page = 1
+
     if (event.key === "Enter") {
-        submitButtonElement.click() // trigger button click
+        console.log("Enter Key Registered")
+        contentTitleElement.classList.add("hidden")
+        movieGridElement.innerHTML = ``  // clear existing results on new search query
+        page = 1
+        handleSearchSubmit(event, page)
     }
 })
 
 closeSearchButtonElement.addEventListener("click", (event) => {
+    console.log("Close Search Registered")
     event.preventDefault()
     searchInputElement.value = ""
     contentTitleElement.classList.remove("hidden")
@@ -44,6 +49,7 @@ closeSearchButtonElement.addEventListener("click", (event) => {
 })
 
 seeMoreButtonElement.addEventListener("click", (event) => {
+    console.log("See More Button Registered")
     page += 1
     console.log("*** calling handleSearchSubmit for Page: " + page)
     handleSearchSubmit(event, page)
@@ -76,7 +82,7 @@ function displayMovies(data) {
     data.results.forEach(movie => {
         if (movie.poster_path === null) {
             movieGridElement.innerHTML += `
-            <div class="movie-card">
+            <div class="movie-card" onclick="showPopUp(${movie.id})">
               <img class="movie-poster" src="./assets/placeholder_img.jpg" alt="placeholder image">
               <span class="movie-title">${movie.original_title}</span>
               <span class="movie-votes">${ratingToStars(movie.vote_average)}</span>
@@ -84,7 +90,7 @@ function displayMovies(data) {
             `
         } else {
         movieGridElement.innerHTML += `
-        <div class="movie-card">
+        <div class="movie-card" onclick="showPopUp(${movie.id})">
           <img class="movie-poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.original_title}">
           <span class="movie-title">${movie.original_title}</span>
           <span class="movie-votes">${ratingToStars(movie.vote_average)}</span>
@@ -101,7 +107,8 @@ async function handleSearchSubmit(event, page) {
 
     if (searchTerm === "") {
         alert("Please search for a movie.")
-        loadMainPage(1)
+        page = 1
+        loadMainPage(page)
         seeMoreButtonElement.classList.remove("hidden")  // reveal seeMoreButton after results load
         contentTitleElement.classList.remove("hidden")
         return;
@@ -127,6 +134,7 @@ function ratingToStars(rating) {
     return result
 }
 
+
 async function loadMainPage(event, page) {
     console.log("*** Calling loadMainPage ***")
     movieGridElement.innerHTML = ``
@@ -137,8 +145,37 @@ async function loadMainPage(event, page) {
     seeMoreButtonElement.classList.add("hidden")  // hide seeMoreButton on main page
 }
 
-async function showPopUp(movie) {
-    pass
+
+async function fetchMovieDetails(movie_id) {
+    console.log(`*** Calling fetchMovieDetails for: ${movie_id}***`)
+    url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`
+    response = await fetch(url)
+    data = await response.json()
+    console.log(data)
+    return data
+}
+
+async function displayMovieDetails(data) {
+    console.log(`*** Calling displayMovieDetails`)
+    // PopUp Tutorial: https://www.youtube.com/watch?v=iE_6pQ3RlZU
+    bodyElement.innerHTML += `
+    <div class="pop-up" id="pop-up-div">
+      <div class="overlay"></div>
+      <div class="content">
+        <div id="close-pop-up-btn" onclick="togglePopUp()">&times;</div>
+        <h3>${data.original_title}</h3>
+        <img src="https://image.tmdb.org/t/p/w500${data.backdrop_path}">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?
+        </p>
+      </div>
+    </div>
+    `
+}
+
+// do I need async here?
+async function showPopUp(movie_id) {
+    data = await fetchMovieDetails(movie_id)
+    displayMovieDetails(data)
 }
 
 
