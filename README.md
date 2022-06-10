@@ -1,4 +1,3 @@
-📝 `NOTE` Use this template to initialize the contents of a README.md file for your application. As you work on your assignment over the course of the week, update the required or stretch features lists to indicate which features you have completed by changing `[ ]` to `[x]`. (🚫 Remove this paragraph before submitting your assignment.)
 
 ## Week 1 Assignment: Flixster
 
@@ -42,7 +41,7 @@ Deployed Application: [Movie Explorer Deployed Site](https://charlesxu27.github.
 
 ### Walkthrough Video
 
-`<img src="https://imgur.com/a/yw0bKQA" width="600" height="auto">`
+<img src="https://imgur.com/a/yw0bKQA" width="600">
 
 ### Reflection
 
