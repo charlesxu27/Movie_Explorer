@@ -16,6 +16,7 @@ body {
     color:#E50914;
     font-family: sans-serif;
     align-items: center;
+    transition: all 800ms ease-in;
 }
 
 button, h1, form, input, #movie-grid {
@@ -61,24 +62,30 @@ footer {
     background-color: #E50914;
     color: white;
     border: none;
-    font-size: 26px;
+    font-size: 20px;
 }
 
 #form-div button:hover {
     background-color: rgb(127, 3, 3);
     color: white;
     border: none;
-    font-size: 26px;
+    font-size: 20px;
 }
 
 #form-div input {
-    font-size: 26px;
+    font-size: 20px;
 }
 
 
 h1 {
     font-size: 60px;
     font-family: 'Bebas Neue';
+}
+
+h1:hover {
+    font-size: 60px;
+    font-family: 'Bebas Neue';
+    color: #a20a12;
 }
 
 .hidden {
